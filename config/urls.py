@@ -17,12 +17,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 
-from catalog.urls import index, contacts, media
-
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', include('catalog.urls', namespace='catalog')),
-    path('index/', index, name='index'),
-    path('contacts/', contacts, name='contacts'),
-    path('media/', media, name='media')
+    path('', include('catalog.urls', namespace='catalog'))
 ]

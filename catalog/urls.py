@@ -6,8 +6,8 @@ app_name = MainConfig.name
 
 urlpatterns = [
     path('', index),
-    path('', contacts),
-    path('', media)
+    path('contacts/', contacts),
+    path('media/', media)
 ]
 
 
