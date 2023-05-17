@@ -1,0 +1,50 @@
+[
+  {
+    "model": "catalog.category",
+    "pk": 6,
+    "fields": {
+      "name": "Домкраты",
+      "description": "Автотовары"
+    }
+  },
+  {
+    "model": "catalog.category",
+    "pk": 7,
+    "fields": {
+      "name": "Лебедки",
+      "description": "Автотовары"
+    }
+  },
+  {
+    "model": "catalog.category",
+    "pk": 8,
+    "fields": {
+      "name": "Инструмент",
+      "description": "Автотовары"
+    }
+  },
+  {
+    "model": "catalog.category",
+    "pk": 11,
+    "fields": {
+      "name": "Оборудование",
+      "description": "Автотовары"
+    }
+  },
+  {
+    "model": "catalog.category",
+    "pk": 12,
+    "fields": {
+      "name": "Автохимия",
+      "description": "Автотовары"
+    }
+  },
+  {
+    "model": "catalog.category",
+    "pk": 13,
+    "fields": {
+      "name": "Детейлинг",
+      "description": "Автотовары"
+    }
+  }
+]

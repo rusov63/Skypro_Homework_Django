@@ -1,0 +1,89 @@
+[
+  {
+    "model": "catalog.product",
+    "pk": 1,
+    "fields": {
+      "name": "Домкрат 2Т Gigant T83502",
+      "description": "Гидравлический подкатной домкрат в кейсе обеспечивает плавное поднятие автомобиля на высоту до 330 мм во время замены колеса.",
+      "image": "",
+      "category": "Автотовары",
+      "price": 8987,
+      "creation_at": "2021-01-01",
+      "modified_at": "2021-01-01"
+    }
+  },
+  {
+    "model": "catalog.product",
+    "pk": 2,
+    "fields": {
+      "name": "Домкрат Gigant 3 т HTJ-3SL",
+      "description": "Гидравлический супернизкий подкатной домкрат обеспечивает плавное поднятие автомобиля на высоту до 508 мм для проведения шиномонтажных работ.",
+      "image": "",
+      "category": "Автотовары",
+      "price": 9918,
+      "creation_at": "2022-01-01",
+      "modified_at": "2022-01-01"
+    }
+  },
+  {
+    "model": "catalog.product",
+    "pk": 3,
+    "fields": {
+      "name": "Домкрат Gigant 5Т HBJ-5",
+      "description": "Гидравлический бутылочный домкрат подойдет для легковых автомобилей, внедорожников и малотоннажных грузовиков.",
+      "image": "",
+      "category": "Автотовары",
+      "price": 1638,
+      "creation_at": "2022-02-01",
+      "modified_at": "2022-02-01"
+    }
+  },
+  {
+    "model": "catalog.category",
+    "pk": 6,
+    "fields": {
+      "name": "Домкраты",
+      "description": "Автотовары"
+    }
+  },
+  {
+    "model": "catalog.category",
+    "pk": 7,
+    "fields": {
+      "name": "Лебедки",
+      "description": "Автотовары"
+    }
+  },
+  {
+    "model": "catalog.category",
+    "pk": 8,
+    "fields": {
+      "name": "Инструмент",
+      "description": "Автотовары"
+    }
+  },
+  {
+    "model": "catalog.category",
+    "pk": 11,
+    "fields": {
+      "name": "Оборудование",
+      "description": "Автотовары"
+    }
+  },
+  {
+    "model": "catalog.category",
+    "pk": 12,
+    "fields": {
+      "name": "Автохимия",
+      "description": "Автотовары"
+    }
+  },
+  {
+    "model": "catalog.category",
+    "pk": 13,
+    "fields": {
+      "name": "Детейлинг",
+      "description": "Автотовары"
+    }
+  }
+]
