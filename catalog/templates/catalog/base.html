@@ -1,0 +1,31 @@
+{% load static %}
+
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <div class="pricing-header mx-auto text-center"><img src="/media/navbar/start.png"></div>
+    <title>{{ title }}</title>
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+    <script src="{% static 'js/bootstrap.min.js' %}"></script>
+</head>
+<body>
+
+{% include 'catalog/includes/inc_catalog_menu.html' %}
+
+
+<div class="container">
+    <div class="row">
+
+        {% block card %}
+        {% endblock %}
+
+        {% include 'catalog/includes/inc_catalog_footer.html' %}
+    </div>
+</div>
+
+
+</body>
+</html>
+

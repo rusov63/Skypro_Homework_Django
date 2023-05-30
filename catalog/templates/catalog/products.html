@@ -1,0 +1,11 @@
+{% extends 'catalog/base.html' %}
+
+{% block card %}
+    <h3 div class="text-center" role="alert"> {{ title }}
+        </div> </h3>
+
+    {% for product in product_list %}
+        {% include 'catalog/includes/inc_catalog_card.html' %}
+    {% endfor %}
+{% endblock %}
+
