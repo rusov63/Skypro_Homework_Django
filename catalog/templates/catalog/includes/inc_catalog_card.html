@@ -1,18 +1,16 @@
 {% load catalog_tags %}
 
-<div class="container">
-    <div class="row">
-        <div class="row text-center">
-            <div class="card m-2" style="width: 20rem;">
-                <img src="{{ product.image|mediapath }}"/>
-                {#            <img src="{% mediapath product.image %}" />#}
-                <div class="card-body">
-                    <h5 class="card-title">{{ product.name }}</h5>
-                    <p class="card-text">{{ product.description|truncatechars:100 }}</p>
-                    <p class="card-text"><b>Цвет:</b> красный, черный, серебристый</p>
-                    <h2 class="card-text">{{ product.price }}</h2>
-                    <a href="{% url 'catalog:product_item' product.pk %}" class="btn btn-danger btn-primary btn-lg">Посмотреть</a>
-                </div>
+<div class="col-sm-4">
+    <div class="row text-center">
+        <div class="card m-2" style="width: 20rem;">
+            <img src="{{ product.image|mediapath }}"/>
+            {#            <img src="{% mediapath product.image %}" />#}
+            <div class="card-body">
+                <h5 class="card-title">{{ product.name }}</h5>
+                <p class="card-text">{{ product.description|truncatechars:100 }}</p>
+                <p class="card-text"><b>Цвет:</b> красный, черный, серебристый</p>
+                <h2 class="card-text">{{ product.price }}</h2>
+                <a href="{% url 'catalog:product_item' product.pk %}" class="btn btn-danger btn-primary btn-lg">Посмотреть</a>
             </div>
         </div>
     </div>

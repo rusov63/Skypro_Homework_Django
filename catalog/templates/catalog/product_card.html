@@ -1,30 +1,31 @@
 {% extends 'catalog/base.html' %}
 {% load catalog_tags %}
 {% block card %}
-    <div class="col">
-        <div class="card">
-            <div class="card-body">
-                <table class="table">
-                    <img src="{{ object.image|mediapath }}"/>
-                    <tr>
-                        <td><h5>Наименование товара: {{ object.name }}</h5></td>
-                    </tr>
-                    <tr>
-                        <td><h5>{{ object.description }}</h5></td>
-                    </tr>
-                    <tr>
-                        <td><h5><b>Цвет:</b> красный, черный, серебристый</h5></td>
-                    </tr>
-                    <tr>
-                        <td><h5>Цена: {{ object.price }} рублей</h5></td>
-                    </tr>
-                </table>
-            </div>
-            <div class="card-footer">
-                <a href="{% url 'catalog:product_list' %}" button type="button" class="btn btn-danger"><< Назад </a>
-                </button>
+    <div class="row text-center">
+        <div class="col">
+            <div class="card">
+                <div class="card-body">
+                    <table class="table">
+                        <img src="{{ object.image|mediapath }}"/>
+                        <tr>
+                            <td><h5>Наименование товара: {{ object.name }}</h5></td>
+                        </tr>
+                        <tr>
+                            <td><h5>{{ object.description }}</h5></td>
+                        </tr>
+                        <tr>
+                            <td><h5><b>Цвет:</b> красный, черный, серебристый</h5></td>
+                        </tr>
+                        <tr>
+                            <td><h5>Цена: {{ object.price }} рублей</h5></td>
+                        </tr>
+                    </table>
+                </div>
+                <div class="card-footer">
+                    <a href="{% url 'catalog:product_list' %}" button type="button" class="btn btn-danger"> Назад </a>
+                    </button>
+                </div>
             </div>
         </div>
     </div>
-
 {% endblock %}
