@@ -1,0 +1,25 @@
+{% extends 'catalog/base.html' %}
+{% load catalog_tags %}
+{% block card %}
+    <div class="row">
+        <div class="col">
+            <div class="card">
+                <div class="card-body">
+                    <form method="post" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        {{ form.as_p }}
+                        <input type="submit" class="btn btn-white btn-info btn-lg"
+                               value="{% if blog %}Сохранить{% else %}Создать{% endif %}">
+                    </form>
+                </div>
+            </div>
+            <div class="card-footer">
+                <a href="{% url 'catalog:blog_list' %}" class="btn btn-white btn-secondary btn-lg"> Назад </a>
+                </button>
+            </div>
+        </div>
+    </div>
+    </div>
+
+{% endblock %}
+

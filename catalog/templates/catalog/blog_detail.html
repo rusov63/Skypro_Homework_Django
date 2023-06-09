@@ -1,0 +1,38 @@
+{% extends 'catalog/base.html' %}
+{% load catalog_tags %}
+{% block card %}
+    <div class="row text-center">
+        <div class="col">
+            <div class="card">
+                <div class="card-body">
+                    <table class="table">
+                        <img src="{{ blog.image|mediapath }}"/>
+                        <tr>
+                            <td><h4> {{ blog.name }}</h4></td>
+                        </tr>
+                        <tr>
+                            <td><h5>{{ blog.content }}</h5></td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <h7>Дата публикации: {{ blog.creation_at }}<br>
+                                    Количество просмотров: {{ blog.number_views }}</h7><br>
+                            <div class="d-grid gap-2 col-3 mx-auto">
+                                    <a href="{% url 'catalog:toggle_activity' blog.slug %}" class="btn btn-outline-success btn-lg">
+                                    {% if blog.publication %} Деактивировать {% else %} Активировать {% endif %} </a>
+                                    <a href="{% url 'catalog:blog_delete' blog.slug %}" class="btn btn-outline-danger btn-lg"> Удалить</a>
+                                    <a href="{% url 'catalog:blog_update' blog.slug %}" class="btn btn-outline-warning btn-lg"> Редактировать</a>
+                            </div>
+
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+                <div class="card-footer">
+                    <a href="{% url 'catalog:blog_list' %}" class="btn btn-white btn-secondary btn-lg"> Назад </a>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

@@ -6,9 +6,7 @@ class Command(BaseCommand):
 
     def handle(self, *args, **options):
         category_list = [
-            {'name': 'Оборудование', 'description': 'Автотовары'},
-            {'name': 'Автохимия', 'description': 'Автотовары'},
-            {'name': 'Детейлинг', 'description': 'Автотовары'}
+            {'name': 'Суппорты', 'description': 'Тормоза'},
         ]
 
         catalogs_objects = []

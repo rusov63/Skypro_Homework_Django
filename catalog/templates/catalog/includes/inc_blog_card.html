@@ -1,0 +1,27 @@
+{% load catalog_tags %}
+
+<div class="col-sm-3">
+    <div class="card" style="width: 18rem;">
+        <img src="{{ blog.image|mediapath }}" class="card-img-top">
+        <div class="card-body">
+            <h4 class="card-title text-center">{{ blog.name }}</h4>
+            <p class="card-text">{{ blog.content|truncatechars:120 }}</p>
+        </div>
+
+        <div class="d-grid gap-1">
+            <a href="{% url 'catalog:blog_item' blog.slug %}" class="btn btn-outline-dark">Посмотреть</a>
+            <h6 class="card-title text-center">Дата публикации: {{ blog.creation_at }}</h6>
+        </div>
+
+        <div class="card-body">
+            <div class="d-grid gap-2 col-6 mx-auto">
+                <a href="{% url 'catalog:blog_update' blog.slug %}" button class="btn btn-outline-info btn-sm"
+                   type="button"> Редактировать </a></button>
+                <a href="{% url 'catalog:toggle_activity' blog.slug %}" button class="btn btn-outline-info btn-sm" >
+                    {% if blog.publication %} Деактивировать {% else %} Активировать {% endif %} </a></button>
+                <a href="{% url 'catalog:blog_delete' blog.slug %}" button class="btn btn-outline-info btn-sm"
+                   type="button"> Удалить </a></button>
+            </div>
+        </div>
+    </div>
+</div>
