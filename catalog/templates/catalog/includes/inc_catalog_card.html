@@ -10,7 +10,26 @@
                 <p class="card-text">{{ product.description|truncatechars:100 }}</p>
                 <p class="card-text"><b>Цвет:</b> красный, черный, серебристый</p>
                 <h2 class="card-text">{{ product.price }}</h2>
+
+{#            класс Version взято из ProductsListView def get_queryset#}
+                {% for version in product.version_set.all %}
+                    {% if version.is_active %}
+                        <p class="card-text">Версия: {{ version.version_name }} </p>
+                        <p class="card-text">Номер версии: {{ version.version_number }} </p>
+                    {% endif %}
+                {% endfor %}
+
                 <a href="{% url 'catalog:product_item' product.pk %}" class="btn btn-danger btn-primary btn-lg">Посмотреть</a>
+            </div>
+            <div class="card-body">
+                <div class="d-grid gap-2 col-6 mx-auto">
+                    <a href="{% url 'catalog:product_update' product.pk %}" button class="btn btn-outline-info btn-sm"
+                       type="button"> Редактировать </a></button>
+                    {#                    <a href="{% url 'catalog:toggle_activity' blog.slug %}" button class="btn btn-outline-info btn-sm">#}
+                    {#                        {% if blog.publication %} Деактивировать {% else %} Активировать {% endif %} </a></button>#}
+                    <a href="{% url 'catalog:product_delete' product.pk %}" button class="btn btn-outline-info btn-sm"
+                       type="button"> Удалить </a></button>
+                </div>
             </div>
         </div>
     </div>

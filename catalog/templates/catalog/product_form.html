@@ -1,0 +1,23 @@
+{% extends 'catalog/base.html' %}
+{% load catalog_tags %}
+{% block card %}
+    <div class="col">
+        <form class="row" method="post">
+            <div class="col-6">
+                <div class="card">
+                    <div class="card-body">
+
+                        {% csrf_token %}
+                        {{ form.as_p }}
+                        <input type="submit" class="btn btn-white btn-info btn-lg"
+                               value="{% if object %}Сохранить{% else %}Создать{% endif %}">
+
+                    </div>
+                    <div class="card-footer">
+                        <a href="{% url 'catalog:product_list' %}" class='btn btn-secondary'><< Назад</a>
+
+                    </div>
+                </div>
+            </div>
+{% endblock %}
+

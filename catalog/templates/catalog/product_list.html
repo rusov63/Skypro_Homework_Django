@@ -3,10 +3,16 @@
 {% block card %}
     <h3 class="text-center" role="alert"> {{ title }}</h3>
 
-    <div class="row">
-    {% for product in product_list %}
-        {% include 'catalog/includes/inc_catalog_card.html' %}
-    {% endfor %}
+    <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+        <a href="{% url 'catalog:product_create' %}" button class="btn btn-outline-danger btn-lg" type="button">Создать
+            продукт</a></button>
     </div>
+
+    <div class="row">
+        {% for product in product_list %}
+                {% include 'catalog/includes/inc_catalog_card.html' %}
+        {% endfor %}
+    </div>
+
 
 {% endblock %}

@@ -1,5 +1,5 @@
 from django.contrib import admin
-from catalog.models import Category, Product, Blog
+from catalog.models import Category, Product, Blog, Version
 
 @admin.register(Product)
 class ProductAdmin(admin.ModelAdmin):
@@ -21,6 +21,12 @@ class BlogAdmin(admin.ModelAdmin):
     search_fields = ('name', 'content')
     list_filter = ('content',)
     prepopulated_fields = {"slug": ("name",)}
+    #prepopulated_fields - обрабатывает заголовок в реальной времени в админ панеле
 
-#prepopulated_fields - обрабатывает заголовок в реальной времени в админ панеле
+@admin.register(Version)
+class VersionAdmin(admin.ModelAdmin):
+    '''Админ-панель модели - Версия'''
+    list_display = ('product', 'version_number', 'version_name',)
+    list_filter = ('is_active',)
+
 

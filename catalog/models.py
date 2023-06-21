@@ -14,6 +14,7 @@ class Product(models.Model):
     creation_at = models.DateField(verbose_name='Дата создания')
     modified_at = models.DateField(verbose_name='Дата последнего изменения')
 
+
     def __str__(self):
         return f'{self.name} {self.category} {self.price} {self.modified_at}'
 
@@ -25,7 +26,7 @@ class Product(models.Model):
 
 
 class Category(models.Model):
-    '''Класс описывающее категорию'''
+    """Класс описывающее категорию"""
     name = models.CharField(max_length=150, verbose_name='Наименование')
     description = models.TextField(verbose_name='Описание')
 
@@ -43,12 +44,12 @@ class Category(models.Model):
 class Blog(models.Model):
     '''Класс описывающий публикуемые статьи в разделе блог'''
     name = models.CharField(max_length=250, verbose_name='Заголовок')
-    slug = models.SlugField(max_length=255, unique=True, verbose_name="URL")
+    slug = models.SlugField(max_length=255, unique=True, verbose_name="URL") # **NULLABLE надо добавить
     content = models.TextField(verbose_name='Содержимое')
     image = models.ImageField(upload_to='blogs/', verbose_name='Изображение', **NULLABLE)
     creation_at = models.DateField(verbose_name='Дата публикации')
     publication = models.BooleanField(default=True, verbose_name='Признак публикации')
-    number_views = models.IntegerField(default=0, verbose_name='Количество просмотров')
+    number_views = models.IntegerField(default=0, verbose_name='Количество просмотров') #**NULLABLE надо добавить
 
 
     def __str__(self):
@@ -67,22 +68,30 @@ class Blog(models.Model):
 
     def save(self, *args, **kwargs):
         """Перевод с RU/ENG c заполнением сохранением поля SLUG
-        используется бибилиотека transliterate, slugify
+        используется библиотека transliterate, slugify
         """
         if not self.slug:
             transliterated_name = translit(self.name, 'ru', reversed=True)
             self.slug = slugify(transliterated_name, allow_unicode=True)
         super().save(*args, **kwargs)
 
-
-
-
-
-
-
-
     class Meta:
         '''Класс мета-настроек'''
         verbose_name = 'статья'
         verbose_name_plural = 'статьи'
         ordering = ('name',)
+
+class Version(models.Model):
+    '''Класс описывающий версии продукта'''
+    product = models.ForeignKey(Product, on_delete=models.SET_NULL, null=True, verbose_name='продукт')
+    version_number = models.CharField(max_length=50, verbose_name='номер версии')
+    version_name = models.CharField(max_length=250, verbose_name='название версии')
+    is_active = models.BooleanField(default=True, verbose_name='активная версия')
+
+    def __str__(self):
+        return f'{self.product} (версия {self.version_number})'
+
+    class Meta:
+        verbose_name = 'версия'
+        verbose_name_plural = 'версии'
+        ordering = ('product',)
