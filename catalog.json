@@ -1,0 +1,144 @@
+[
+  {
+    "model": "catalog.product",
+    "pk": 1,
+    "fields": {
+      "name": "4-х поршневой суппорт JBT CB4P",
+      "description": "Применяется с дисками: 303мм, толщина 25мм, колесный диск 16.330мм с алюминевой ступицей, толщина 32мм, колесный диск 17.355мм с алюминевой ступицей, толщина 32мм, колесный диск 18.",
+      "image": "products/CB4P.png",
+      "category": "Cуппорты",
+      "price": 25000,
+      "creation_at": "2021-01-01",
+      "modified_at": "2021-01-01"
+    }
+  },
+  {
+    "model": "catalog.product",
+    "pk": 2,
+    "fields": {
+      "name": "4-х поршневой суппорт JBT FB4P1",
+      "description": "Применяется с дисками: 380мм с алюминиевой ступицей, толщина 32мм, колесный диск 19\" и более",
+      "image": "products/FB4P1.png",
+      "category": "Cуппорты",
+      "price": 25000,
+      "creation_at": "2022-02-01",
+      "modified_at": "2022-02-01"
+    }
+  },
+  {
+    "model": "catalog.product",
+    "pk": 3,
+    "fields": {
+      "name": "4-х поршневой суппорт JBT CM4P",
+      "description": "Применяется с дисками: 282-330мм, толщина 24-26мм, колесный диск 15\"-17\"",
+      "image": "products/CM4P.png",
+      "category": "Cуппорты",
+      "price": 25000,
+      "creation_at": "2022-02-01",
+      "modified_at": "2022-02-01"
+    }
+  },
+  {
+    "model": "catalog.product",
+    "pk": 4,
+    "fields": {
+      "name": "6-ти поршневой суппорт JBT CB6P",
+      "description": "Применяется с дисками: 355мм с алюминиевой ступицей, толщина 32мм, колесный диск 18\", 19\" и более.330мм с алюминиевой ступицей, толщина 32мм, колесный диск 17\", 18",
+      "image": "products/CB6P.png",
+      "category": "Cуппорты",
+      "price": 36000,
+      "creation_at": "2022-01-01",
+      "modified_at": "2022-01-01"
+    }
+  },
+  {
+    "model": "catalog.product",
+    "pk": 5,
+    "fields": {
+      "name": "Кованый 8-ми поршневой суппорт JBT FM8P",
+      "description": "Применяется с дисками: 355мм с алюминиевой ступицей, толщина 32мм, колесный диск 18\", 19\" и более.",
+      "image": "products/CB6P_Kjd2ptI.png",
+      "category": "Cуппорты",
+      "price": 45000,
+      "creation_at": "2022-02-01",
+      "modified_at": "2022-02-01"
+    }
+  },
+  {
+    "model": "catalog.product",
+    "pk": 6,
+    "fields": {
+      "name": "Кованый 8-ми поршневой суппорт JBT FB8P",
+      "description": "Применяется с дисками:405мм с алюминиевой ступицей, толщина 34-36мм, колесный диск 20\", 22.380мм с алюминиевой ступицей, толщина 34мм, колесный диск 19\", 20\", 22.",
+      "image": "products/FM8P.png",
+      "category": "Cуппорты",
+      "price": 60000,
+      "creation_at": "2022-02-01",
+      "modified_at": "2022-02-01"
+    }
+  },
+  {
+    "model": "catalog.product",
+    "pk": 7,
+    "fields": {
+      "name": "Кованый 12-ти поршневой суппорт JBT FB12P",
+      "description": "Применяется с дисками: 405мм с алюминиевой ступицей, толщина 34-36мм, колесный диск 20\", 22\" и более.380мм с алюминиевой ступицей, толщина 34мм, колесный диск 19\", 20\", 22\" и более",
+      "image": "products/FB12P.png",
+      "category": "Cуппорты",
+      "price": 70000,
+      "creation_at": "2022-02-01",
+      "modified_at": "2022-02-01"
+    }
+  },
+  {
+    "model": "catalog.category",
+    "pk": 1,
+    "fields": {
+      "name": "Суппорты",
+      "description": "Тормоза"
+    }
+  },
+  {
+    "model": "catalog.blog",
+    "pk": 1,
+    "fields": {
+      "name": "Новый среднеразмерный внедорожник Toyota FJ Cruiser с тормозами JBT",
+      "slug": "novyj-srednerazmernyj-vnedorozhnik-toyota-fj-cruiser-s-tormozami-jbt",
+      "content": "Новый среднеразмерный внедорожник Toyota FJ Cruiser с тормозами JBT\r\nСуппорты JB6P — 6 поршней;\r\nСоставные роторы 355х32мм на плавающем крепеже;\r\nКолодки керамические;\r\nПереходники;\r\nКрепеж.",
+      "image": "blogs/fo_toyota_fj_cruiser_2.jpg",
+      "creation_at": "2023-06-10",
+      "publication": true,
+      "number_views": 1
+    }
+  },
+  {
+    "model": "catalog.version",
+    "pk": 2,
+    "fields": {
+      "product": 6,
+      "version_number": "2",
+      "version_name": "суппорт",
+      "is_active": true
+    }
+  },
+  {
+    "model": "catalog.version",
+    "pk": 3,
+    "fields": {
+      "product": 1,
+      "version_number": "2",
+      "version_name": "суппорт",
+      "is_active": true
+    }
+  },
+  {
+    "model": "catalog.version",
+    "pk": 4,
+    "fields": {
+      "product": 3,
+      "version_number": "1",
+      "version_name": "1",
+      "is_active": true
+    }
+  }
+]

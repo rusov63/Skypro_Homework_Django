@@ -1,12 +1,20 @@
 <div class="alert alert-danger card m-5" role="alert">
     <nav class="navbar navbar-light">
         <div class="container-fluid">
-            <a class="navbar-brand" href="{% url 'catalog:index' %}"><img src="/media/navbar/главная.png" alt="Logo"></a>
-            <a class="navbar-brand" href="{% url 'catalog:product_list' %}"><img src="/media/navbar/brakes.png" alt="Logo"></a>
+            <a class="navbar-brand" href="{% url 'catalog:index' %}"><img src="/media/navbar/главная.png"
+                                                                          alt="Logo"></a>
+            <a class="navbar-brand" href="{% url 'catalog:product_list' %}"><img src="/media/navbar/brakes.png"
+                                                                                 alt="Logo"></a>
+            <a class="navbar-brand" href="{% url 'catalog:contacts' %}"><img src="/media/navbar/контакты.png"
+                                                                             alt="Logo"></a>
             <a class="navbar-brand" href="{% url 'catalog:blog_list' %}"><img src="/media/navbar/статьи.png" alt="Logo"></a>
-            <a class="navbar-brand" href="#"><img src="/media/navbar/диски.png" alt="Logo"></a>
-            <a class="navbar-brand" href="#"><img src="/media/navbar/тормозные_колодки.png" alt="Logo"></a>
-            <a class="navbar-brand" href="{% url 'catalog:contacts' %}"><img src="/media/navbar/контакты.png" alt="Logo"></a>
+            {% if user.is_authenticated %}
+                <a class="navbar-brand" href="{% url 'users:profile' %}"><img src="/media/navbar/profile.png" alt="Logo"></a>
+                <a class="navbar-brand" href="{% url 'users:logout' %}"><img src="/media/navbar/logout.png" alt="Logo"></a>
+            {% else %}
+                <a class="navbar-brand" href="{% url 'users:login' %}"><img src="/media/navbar/login.png" alt="Logo"></a>
+                <a class="navbar-brand" href="{% url 'users:register' %}"><img src="/media/navbar/register.png" alt="Logo"></a>
+            {% endif %}
         </div>
     </nav>
 </div>

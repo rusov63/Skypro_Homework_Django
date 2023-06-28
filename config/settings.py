@@ -38,8 +38,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
-    'catalog'
-
+    'catalog', # приложение
+    'users', # пользователи
 ]
 
 MIDDLEWARE = [
@@ -51,6 +51,7 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
+
 
 ROOT_URLCONF = 'config.urls'
 
@@ -65,10 +66,13 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                #'account.context_processors.account', # email-аутентификация django-user-accounts.
             ],
         },
+
     },
 ]
+
 
 WSGI_APPLICATION = 'config.wsgi.application'
 
@@ -135,3 +139,42 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+AUTH_USER_MODEL = 'users.User'
+
+LOGIN_REDIRECT_URL = '/'
+LOGOUT_REDIRECT_URL = '/'
+
+# настройка почты на yahoo.com
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.mail.yahoo.com'
+EMAIL_PORT = 465 # SSL
+EMAIL_USE_SSL = True
+EMAIL_HOST_USER = 'rusov63@yahoo.com'
+EMAIL_HOST_PASSWORD = 'igcyytovihfgeidy' # временный пароль для отправки писем
+EMAIL_SERVER = EMAIL_HOST_USER
+EMAIL_SERVER = EMAIL_HOST_USER
+DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
+
+
+# ACCOUNT_EMAIL_UNIQUE = True # email-аутентификация django-user-accounts.
+# ACCOUNT_EMAIL_CONFIRMATION_REQUIRED = True # email-аутентификация django-user-accounts.
+# SITE_ID = 2
+#
+# ACCOUNT_LOGIN_URL = 'users:account_login'
+# ACCOUNT_EMAIL_CONFIRMATION_ANONYMOUS_REDIRECT_URL = ACCOUNT_LOGIN_URL
+# ACCOUNT_PASSWORD_RESET_REDIRECT_URL = ACCOUNT_LOGIN_URL
+# ACCOUNT_EMAIL_CONFIRMATION_URL = "users:account_confirm_email"
+# ACCOUNT_SETTINGS_REDIRECT_URL = 'users:account_settings'
+# ACCOUNT_PASSWORD_CHANGE_REDIRECT_URL = "users:account_password"
+
+#EMAIL_PORT = 587 # TLS
+#EMAIL_USE_TLS = True
+
+# для яндекса настройки
+# EMAIL_HOST = 'smtp.yandex.com'
+# EMAIL_PORT = 465
+# EMAIL_HOST_USER = 'rusov63@yahoo.com'
+# EMAIL_HOST_PASSWORD = 'указать пароль'
+# EMAIL_USE_TLS = False
+# EMAIL_USE_SSL = True
