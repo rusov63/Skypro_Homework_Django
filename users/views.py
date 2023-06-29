@@ -34,35 +34,35 @@ class UserRegisterView(CreateView):
         return context
 
     def form_valid(self, form):
-        self.object = form.save()
-        token = default_token_generator.make_token(self.object)
-        uid = urlsafe_base64_encode(force_bytes(self.object.pk))
-        activation_url = reverse_lazy('users:confirm_email', kwargs={'uidb64': uid, 'token': token})
+        user = form.save(commit=False)
+        user.is_active = False
+        user.token = default_token_generator.make_token(user)
+        activation_url = reverse_lazy(
+            'users:confirm_email', kwargs={'token': user.token}
+        )
 
         send_mail(
             subject='Подтверждение почты',
             message=f'Для подтверждения регистрации перейдите по ссылке: http://localhost:8000/{activation_url}',
             from_email=settings.EMAIL_HOST_USER,
-            recipient_list=[self.object.email],
+            recipient_list=[user.email],
             fail_silently=False
         )
+        user.save()
         return redirect('users:email_confirmation_sent')
 
-class UserConfirmEmailView(View):
-    def get(self, request, uidb64, token):
-        try:
-            uid = urlsafe_base64_decode(uidb64)
-            user = User.objects.get(pk=uid)
-        except (TypeError, ValueError, OverflowError, User.DoesNotExist):
-            user = None
 
-        if user is not None and default_token_generator.check_token(user, token):
-            user.is_active = True
-            user.save()
-            login(request, user)
-            return redirect('users:email_code')
-        else:
+class UserConfirmEmailView(View):
+    def get(self, request, token):
+        try:
+            user = User.objects.get(token=token)
+        except User.DoesNotExist:
             return redirect('users:email_confirmation_failed')
+
+        user.is_active = True
+        user.token = None
+        user.save()
+        return redirect('users:login')
 
 class EmailConfirmationSentView(TemplateView):
     template_name = 'users/email_confirmation_sent.html'
@@ -89,7 +89,7 @@ class EmailConfirmationFailedView(TemplateView):
         context['title'] = 'Ваш электронный адрес не активирован'
         return context
 
-def generate_new_password(request):
+def generate_new_password(self, request):
     new_password = ''.join([str(random.randint(0, 9)) for _ in range(12)])
 
     send_mail(
