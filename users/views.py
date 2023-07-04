@@ -3,16 +3,13 @@ import random
 
 from django.contrib.auth import login
 from django.contrib.auth.tokens import default_token_generator
-from django.contrib.auth.views import PasswordResetView, PasswordContextMixin
 from django.core.mail import send_mail
 from django.shortcuts import redirect, render
 
 from users.models import User
 from django.urls import reverse_lazy, reverse
-from django.utils.encoding import force_bytes
-from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
 from django.views import View
-from django.views.generic import UpdateView, CreateView, TemplateView, FormView
+from django.views.generic import UpdateView, CreateView, TemplateView
 from django.conf import settings
 
 from users.forms import UserRegisterForm, UserProfileForm
@@ -40,7 +37,6 @@ class UserRegisterView(CreateView):
         activation_url = reverse_lazy(
             'users:confirm_email', kwargs={'token': user.token}
         )
-
         send_mail(
             subject='Подтверждение почты',
             message=f'Для подтверждения регистрации перейдите по ссылке: http://localhost:8000/{activation_url}',
@@ -65,6 +61,7 @@ class UserConfirmEmailView(View):
         return redirect('users:login')
 
 class EmailConfirmationSentView(TemplateView):
+    """Письмо подтверждения отправлено"""
     template_name = 'users/email_confirmation_sent.html'
 
     def get_context_data(self, **kwargs):
@@ -74,6 +71,7 @@ class EmailConfirmationSentView(TemplateView):
 
 
 class EmailConfirmView(TemplateView):
+    """Электронная почта подтверждена"""
     template_name = 'users/email_verified.html'
 
     def get_context_data(self, **kwargs):
@@ -82,6 +80,7 @@ class EmailConfirmView(TemplateView):
         return context
 
 class EmailConfirmationFailedView(TemplateView):
+    """Ошибка подтверждения по электронной почте"""
     template_name = 'users/email_confirmation_failed.html'
 
     def get_context_data(self, **kwargs):
@@ -89,32 +88,11 @@ class EmailConfirmationFailedView(TemplateView):
         context['title'] = 'Ваш электронный адрес не активирован'
         return context
 
-def generate_new_password(self, request):
-    new_password = ''.join([str(random.randint(0, 9)) for _ in range(12)])
-
-    send_mail(
-        subject='Вы сменили пароль',
-        message=f'Ваш новый сгенерированный пароль: {new_password}',
-        from_email=settings.EMAIL_HOST_USER,
-        recipient_list=[request.user.email],
-        fail_silently=False
-    )
-    request.user.set_password(new_password)
-    request.user.save()
-    return redirect(reverse('users:login'))
-
-def backup_pass(request):
-    """Восстановление пароля"""
-    if request.method == "POST":
-        email = request.POST.get('email')
-        generate_new_password(email)
-    return render(request, 'users/backup_pass.html')
-
-
 
 
 
 class ProfileView(UpdateView):
+    """Профиль зарегистрированного пользователя"""
     model = User
     form_class = UserProfileForm
     success_url = reverse_lazy('users:profile')
@@ -130,6 +108,37 @@ class ProfileView(UpdateView):
         return context
 
 
+def generate_new_password(request):
+    """Сброс пароля зарегистрированного пользователя в профиле"""
+    new_password = ''.join([str(random.randint(0, 9)) for _ in range(13)])
+    send_mail(
+        subject='Вы сменили пароль',
+        message=f'Ваш новый пароль: {new_password}',
+        from_email=settings.EMAIL_HOST_USER,
+        recipient_list=[request.user.email]
+    )
+    request.user.set_password(new_password)
+    request.user.save()
+    return redirect(reverse('catalog:index'))
+
+
+def password_reset_form(request):
+    """Восстановление пароля в форме входа (забыли пароль)"""
+    # new_password = ''.join([str(random.randint(0, 9)) for _ in range(13)])
+    # send_mail(
+    #     subject='Вы сменили пароль',
+    #     message=f'Ваш новый пароль: {new_password}',
+    #     from_email=settings.EMAIL_HOST_USER,
+    #     recipient_list=[request.user.email]
+    # )
+    # if request.method == "POST":
+    #     email = request.POST.get('email')
+    #     generate_new_password(email)
+    request.user.save()
+    return render(request, ('catalog:index'))
+
+
+
     # def form_valid(self, form):
     #     """Отправка письма при регистрации нового пользователя"""
     #     new_user = form.save()
@@ -140,6 +149,7 @@ class ProfileView(UpdateView):
     #         recipient_list=[new_user.email]
     #     )
     #     return super().form_valid(form)
+
 
 
 
