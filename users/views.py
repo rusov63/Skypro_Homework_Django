@@ -1,10 +1,9 @@
-#from django.contrib.auth.forms import UserCreationForm
 import random
 
 from django.contrib.auth import login
 from django.contrib.auth.tokens import default_token_generator
 from django.core.mail import send_mail
-from django.shortcuts import redirect, render
+from django.shortcuts import redirect
 
 from users.models import User
 from django.urls import reverse_lazy, reverse
@@ -12,8 +11,9 @@ from django.views import View
 from django.views.generic import UpdateView, CreateView, TemplateView
 from django.conf import settings
 
-from users.forms import UserRegisterForm, UserProfileForm
-#from django.views.generic import CreateView, UpdateView
+from django.contrib.messages.views import SuccessMessageMixin
+from users.forms import UserRegisterForm, UserProfileForm, UserForgotPasswordForm, UserSetNewPasswordForm
+from django.contrib.auth.views import PasswordResetView, PasswordResetConfirmView
 
 
 
@@ -122,20 +122,40 @@ def generate_new_password(request):
     return redirect(reverse('catalog:index'))
 
 
-def password_reset_form(request):
-    """Восстановление пароля в форме входа (забыли пароль)"""
-    # new_password = ''.join([str(random.randint(0, 9)) for _ in range(13)])
-    # send_mail(
-    #     subject='Вы сменили пароль',
-    #     message=f'Ваш новый пароль: {new_password}',
-    #     from_email=settings.EMAIL_HOST_USER,
-    #     recipient_list=[request.user.email]
-    # )
-    # if request.method == "POST":
-    #     email = request.POST.get('email')
-    #     generate_new_password(email)
-    request.user.save()
-    return render(request, ('catalog:index'))
+
+class UserForgotPasswordView(SuccessMessageMixin, PasswordResetView):
+    """Представление по сбросу пароля по почте"""
+    form_class = UserForgotPasswordForm
+    template_name = 'users/user_password_reset.html'
+    success_url = reverse_lazy('users:login')
+    success_message = 'Письмо с инструкцией по восстановлению пароля отправлена на ваш email'
+    subject_template_name = 'users/email/password_subject_reset_mail.txt'
+    email_template_name = 'users/email/password_reset_mail.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['title'] = 'Запрос на восстановление пароля'
+        return context
+
+
+class UserPasswordResetConfirmView(SuccessMessageMixin, PasswordResetConfirmView):
+    """Представление установки нового пароля"""
+    form_class = UserSetNewPasswordForm
+    template_name = 'users/email/user_password_set_new.html'
+    success_url = reverse_lazy('users:login')
+    success_message = 'Пароль успешно изменен. Можете авторизоваться на сайте.'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['title'] = 'Установить новый пароль'
+        return context
+
+
+
+
+
+
+
 
 
 

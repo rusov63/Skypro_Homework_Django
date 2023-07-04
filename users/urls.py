@@ -4,7 +4,7 @@ from django.urls import path
 from users.apps import UsersConfig
 from users.views import ProfileView, generate_new_password, UserRegisterView, EmailConfirmationSentView, \
     UserConfirmEmailView, \
-    EmailConfirmView, EmailConfirmationFailedView, password_reset_form
+    EmailConfirmView, EmailConfirmationFailedView, UserForgotPasswordView, UserPasswordResetConfirmView
 
 app_name = UsersConfig.name
 
@@ -20,8 +20,6 @@ urlpatterns = [
     path('email-confirmed/', EmailConfirmView.as_view(), name='email_verified'), #Электронная почта подтверждена
     path('confirm-email-failed/', EmailConfirmationFailedView.as_view(), name='email_confirmation_failed'), #Ошибка подтверждения по электронной почте
 
-    path('password_reset/', password_reset_form, name='password_reset_form'),  # забыли пароль?
-
-    #path('password-reset/', UserForgotPasswordView.as_view(), name='password_reset'),
-    #path('set-new-password/<uidb64>/<token>/', UserPasswordResetConfirmView.as_view(), name='password_reset_confirm'),
+    path('password_reset/', UserForgotPasswordView.as_view(), name='password_reset'),  # забыли пароль?
+    path('set-new-password/<uidb64>/<token>/', UserPasswordResetConfirmView.as_view(), name='password_reset_confirm'),
 ]
