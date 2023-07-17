@@ -145,16 +145,6 @@ AUTH_USER_MODEL = 'users.User'
 LOGIN_REDIRECT_URL = '/'
 LOGOUT_REDIRECT_URL = '/'
 
-# настройка почты на yahoo.com
-EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-EMAIL_HOST = 'smtp.mail.yahoo.com'
-EMAIL_PORT = 465 # SSL
-EMAIL_USE_SSL = True
-EMAIL_HOST_USER = 'rusov63@yahoo.com'
-EMAIL_HOST_PASSWORD = 'igcyytovihfgeidy' # временный пароль для отправки писем
-EMAIL_SERVER = EMAIL_HOST_USER
-EMAIL_SERVER = EMAIL_HOST_USER
-DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
 
 
 # ACCOUNT_EMAIL_UNIQUE = True # email-аутентификация django-user-accounts.
